@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K&A Flowers - Exquisite Floral Arrangements</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#FFC0CB", secondary: "#FFFDD0" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+
+      :root {
+          --primary-color: #FFC0CB;
+          --secondary-color: #FFFDD0;
+          --accent-color: #9DC183;
+          --text-color: #333333;
+      }
+
+      body {
+          font-family: 'Lato', sans-serif;
+          color: var(--text-color);
+      }
+
+      h1, h2, h3, h4 {
+          font-family: 'Playfair Display', serif;
+      }
+
+      .script-font {
+          font-family: 'Great Vibes', cursive;
+      }
+
+      .hero-section {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.3));
+          background-size: cover;
+          background-position: center;
+          position: relative;
+      }
+
+      .hero-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.6));
+          z-index: 1;
+      }
+
+      .hero-section > * {
+          position: relative;
+          z-index: 2;
+      }
+
+      .collection-card {
+          transition: transform 0.3s ease;
+          overflow: hidden;
+      }
+
+      .collection-card:hover {
+          transform: translateY(-5px);
+      }
+
+      .collection-card img {
+          transition: transform 0.5s ease;
+      }
+
+      .collection-card:hover img {
+          transform: scale(1.05);
+      }
+
+      .gallery-item {
+          transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .whatsapp-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 100;
+      }
+
+      input[type="range"] {
+          appearance: none;
+          width: 100%;
+          height: 6px;
+          background: #e2e8f0;
+          border-radius: 5px;
+          outline: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          width: 20px;
+          height: 20px;
+          background: var(--primary-color);
+          border-radius: 50%;
+          cursor: pointer;
+      }
+
+      .custom-checkbox {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid var(--primary-color);
+          border-radius: 4px;
+          outline: none;
+          cursor: pointer;
+          position: relative;
+      }
+
+      .custom-checkbox:checked {
+          background-color: var(--primary-color);
+      }
+
+      .custom-checkbox:checked::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 6px;
+          width: 6px;
+          height: 12px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+      }
+
+      .custom-switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 24px;
+      }
+
+      .custom-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      .switch-slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: .4s;
+          border-radius: 24px;
+      }
+
+      .switch-slider:before {
+          position: absolute;
+          content: "";
+          height: 18px;
+          width: 18px;
+          left: 3px;
+          bottom: 3px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+
+      input:checked + .switch-slider {
+          background-color: var(--primary-color);
+      }
+
+      input:checked + .switch-slider:before {
+          transform: translateX(26px);
+      }
+
+      .filter-button.active {
+          background-color: var(--primary-color);
+          color: white;
+      }
+
+      .lightbox {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          justify-content: center;
+          align-items: center;
+      }
+
+      .lightbox.active {
+          display: flex;
+      }
+
+      .lightbox-content {
+          max-width: 80%;
+          max-height: 80%;
+      }
+
+      .lightbox-close {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          color: white;
+          font-size: 30px;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a href="#" class="flex items-center">
+          <img
+            src="assets/logo/logo.jpg"
+            alt="K&A Flowers Logo"
+            class="h-12 w-auto"
+          />
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#collections"
+            class="text-gray-700 hover:text-primary transition"
+            >Collections</a
+          >
+          <a href="#order" class="text-gray-700 hover:text-primary transition"
+            >Order</a
+          >
+          <a href="#gallery" class="text-gray-700 hover:text-primary transition"
+            >Gallery</a
+          >
+          <a href="#about" class="text-gray-700 hover:text-primary transition"
+            >About</a
+          >
+          <a href="#contact" class="text-gray-700 hover:text-primary transition"
+            >Contact</a
+          >
+        </div>
+        <div class="md:hidden w-10 h-10 flex items-center justify-center">
+          <i class="ri-menu-line ri-2x"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero-section min-h-screen flex items-center relative"
+      style="background-image: url('assets/hero/hero.jpg')"
+    >
+      <div class="container mx-auto px-4 w-full">
+        <div class="max-w-2xl">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
+            Beautiful Flowers for Every Occasion
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-800">
+            Crafting exquisite floral arrangements that bring joy and beauty to your special moments.
+          </p>
+          <div class="flex gap-4">
+            <a
+              href="#collections"
+              class="bg-primary text-white px-8 py-3 rounded-button text-lg hover:bg-opacity-90 transition-colors duration-300"
+            >
+              View Collections
+            </a>
+            <a
+              href="#order"
+              class="border-2 border-primary text-primary px-8 py-3 rounded-button text-lg hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature Collections -->
+    <section id="collections" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2">Signature Collections</h2>
+          <p class="script-font text-2xl text-primary">
+            Handcrafted with love and passion
+          </p>
+          <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Wedding Bouquets -->
+          <a
+            href="#order"
+            class="collection-card rounded-lg overflow-hidden shadow-lg group"
+          >
+            <div class="relative h-80 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Elegant%20wedding%20bouquet%20with%20white%20roses%2C%20peonies%2C%20and%20subtle%20greenery.%20Soft%2C%20romantic%20composition%20with%20delicate%20ribbon%20wrapping%20the%20stems.%20Professional%20photography%20with%20soft%20natural%20lighting%20against%20a%20light%20neutral%20background%2C%20creating%20a%20dreamy%20bridal%20atmosphere.&width=600&height=800&seq=2&orientation=portrait"
+                alt="Wedding Bouquets"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-30 flex items-end p-6 transition-all duration-300 group-hover:bg-opacity-20"
+              >
+                <div>
+                  <h3 class="text-white text-2xl font-bold">
+                    Wedding Bouquets
+                  </h3>
+                  <p class="text-white opacity-90">
+                    Timeless elegance for your special day
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Anniversary Arrangements -->
+          <a
+            href="#order"
+            class="collection-card rounded-lg overflow-hidden shadow-lg group"
+          >
+            <div class="relative h-80 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Luxurious%20anniversary%20flower%20arrangement%20featuring%20red%20roses%2C%20pink%20peonies%2C%20and%20decorative%20greenery%20in%20an%20elegant%20vase.%20Romantic%20composition%20with%20rich%20textures%20and%20colors.%20Professional%20photography%20with%20soft%20natural%20lighting%20against%20a%20light%20neutral%20background%2C%20creating%20a%20sophisticated%20and%20romantic%20atmosphere.&width=600&height=800&seq=3&orientation=portrait"
+                alt="Anniversary Arrangements"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-30 flex items-end p-6 transition-all duration-300 group-hover:bg-opacity-20"
+              >
+                <div>
+                  <h3 class="text-white text-2xl font-bold">
+                    Anniversary Arrangements
+                  </h3>
+                  <p class="text-white opacity-90">Celebrate your love story</p>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Funeral Wreaths -->
+          <a
+            href="#order"
+            class="collection-card rounded-lg overflow-hidden shadow-lg group"
+          >
+            <div class="relative h-80 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Elegant%20funeral%20wreath%20with%20white%20lilies%2C%20roses%2C%20and%20subtle%20greenery.%20Respectful%20and%20dignified%20composition%20with%20a%20tasteful%20white%20ribbon.%20Professional%20photography%20with%20soft%20natural%20lighting%20against%20a%20light%20neutral%20background%2C%20creating%20a%20serene%20and%20respectful%20memorial%20atmosphere.&width=600&height=800&seq=4&orientation=portrait"
+                alt="Funeral Wreaths"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-30 flex items-end p-6 transition-all duration-300 group-hover:bg-opacity-20"
+              >
+                <div>
+                  <h3 class="text-white text-2xl font-bold">Funeral Wreaths</h3>
+                  <p class="text-white opacity-90">
+                    Dignified tributes of remembrance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Daily Specials -->
+          <a
+            href="#order"
+            class="collection-card rounded-lg overflow-hidden shadow-lg group"
+          >
+            <div class="relative h-80 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Vibrant%20daily%20special%20flower%20arrangement%20with%20seasonal%20blooms%20including%20tulips%2C%20daisies%2C%20and%20colorful%20mixed%20flowers.%20Fresh%20and%20cheerful%20composition%20in%20a%20stylish%20container.%20Professional%20photography%20with%20bright%20natural%20lighting%20against%20a%20light%20neutral%20background%2C%20creating%20a%20joyful%20and%20uplifting%20atmosphere.&width=600&height=800&seq=5&orientation=portrait"
+                alt="Daily Specials"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-30 flex items-end p-6 transition-all duration-300 group-hover:bg-opacity-20"
+              >
+                <div>
+                  <h3 class="text-white text-2xl font-bold">Daily Specials</h3>
+                  <p class="text-white opacity-90">Fresh seasonal selections</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2">Our Gallery</h2>
+          <p class="script-font text-2xl text-primary">
+            Explore our floral artistry
+          </p>
+          <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+          <button
+            class="filter-button active px-6 py-2 !rounded-button border-2 border-primary text-primary hover:bg-primary hover:text-white transition whitespace-nowrap"
+            data-filter="all"
+          >
+            All
+          </button>
+          <button
+            class="filter-button px-6 py-2 !rounded-button border-2 border-primary text-primary hover:bg-primary hover:text-white transition whitespace-nowrap"
+            data-filter="wedding"
+          >
+            Wedding
+          </button>
+          <button
+            class="filter-button px-6 py-2 !rounded-button border-2 border-primary text-primary hover:bg-primary hover:text-white transition whitespace-nowrap"
+            data-filter="anniversary"
+          >
+            Anniversary
+          </button>
+          <button
+            class="filter-button px-6 py-2 !rounded-button border-2 border-primary text-primary hover:bg-primary hover:text-white transition whitespace-nowrap"
+            data-filter="funeral"
+          >
+            Funeral
+          </button>
+          <button
+            class="filter-button px-6 py-2 !rounded-button border-2 border-primary text-primary hover:bg-primary hover:text-white transition whitespace-nowrap"
+            data-filter="daily"
+          >
+            Daily
+          </button>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-12"
+        >
+          <!-- Gallery Item 1 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="wedding"
+          >
+            <img
+              src="assets/gallery/flower-name.jpg"
+              alt="Wedding Bouquet"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Elegant Bridal Bouquet</h4>
+              <p class="text-sm text-gray-600">White and blush roses</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 2 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="anniversary"
+          >
+            <img
+              src="assets/gallery/flower-name1.jpg"
+              alt="Anniversary Arrangement"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Romantic Anniversary</h4>
+              <p class="text-sm text-gray-600">Red roses and pink lilies</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 3 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="funeral"
+          >
+            <img
+              src="assets/gallery/flower-name2.jpg"
+              alt="Funeral Wreath"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Peaceful Remembrance</h4>
+              <p class="text-sm text-gray-600">White lilies and roses</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 4 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="daily"
+          >
+            <img
+              src="assets/gallery/flower-name5.jpg"
+              alt="Daily Special"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Sunshine Delight</h4>
+              <p class="text-sm text-gray-600">Sunflowers and daisies</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 5 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="wedding"
+          >
+            <img
+              src="assets/gallery/flower-name6.jpg"
+              alt="Wedding Centerpiece"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Reception Centerpiece</h4>
+              <p class="text-sm text-gray-600">Hydrangeas and roses</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 6 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="anniversary"
+          >
+            <img
+              src="assets/gallery/flower-name3.jpg"
+              alt="Anniversary Gift"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Love Gift Box</h4>
+              <p class="text-sm text-gray-600">Roses and chocolates</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 7 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="funeral"
+          >
+            <img
+              src="assets/gallery/flower-name4.jpg"
+              alt="Casket Spray"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Graceful Tribute</h4>
+              <p class="text-sm text-gray-600">Casket spray arrangement</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 8 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="daily"
+          >
+            <img
+              src="assets/gallery/flower-name7.jpg"
+              alt="Spring Arrangement"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Spring Awakening</h4>
+              <p class="text-sm text-gray-600">Tulips and daffodils</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 9 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="wedding"
+          >
+            <img
+              src="assets/gallery/flower-name8.jpg"
+              alt="Wedding Arch"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Ceremony Arch</h4>
+              <p class="text-sm text-gray-600">Floral wedding backdrop</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 10 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="anniversary"
+          >
+            <img
+              src="assets/gallery/flower-name9.jpg"
+              alt="Heart Arrangement"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Heart of Love</h4>
+              <p class="text-sm text-gray-600">Heart-shaped arrangement</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 11 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="funeral"
+          >
+            <img
+              src="assets/gallery/flower-name10.jpg"
+              alt="Standing Spray"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Standing Tribute</h4>
+              <p class="text-sm text-gray-600">Lilies and chrysanthemums</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 12 -->
+          <div
+            class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer"
+            data-category="daily"
+          >
+            <img
+              src="assets/gallery/flower-name11.jpg"
+              alt="Autumn Arrangement"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-3 bg-white">
+              <h4 class="font-semibold">Autumn Harvest</h4>
+              <p class="text-sm text-gray-600">Seasonal fall blooms</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" src="" alt="Enlarged gallery image" />
+    </div>
+
+    <!-- Custom Order Form -->
+    <section id="order" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2">Custom Order</h2>
+          <p class="script-font text-2xl text-primary">
+            Create your perfect arrangement
+          </p>
+          <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+          <form id="orderForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+              <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+            </div>
+
+            <div>
+              <label for="name" class="block text-gray-700 mb-2"
+                >Full Name *</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label for="phone" class="block text-gray-700 mb-2"
+                >Phone Number *</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                class="w-full px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm"
+                placeholder="Your phone number"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="email" class="block text-gray-700 mb-2"
+                >Email Address *</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm"
+                placeholder="Your email address"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <h3 class="text-xl font-semibold mb-4 mt-4">Order Details</h3>
+            </div>
+
+            <div>
+              <label for="eventType" class="block text-gray-700 mb-2"
+                >Event Type *</label
+              >
+              <div class="relative">
+                <select
+                  id="eventType"
+                  name="eventType"
+                  required
+                  class="w-full appearance-none px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm pr-8"
+                >
+                  <option value="">Select event type</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="anniversary">Anniversary</option>
+                  <option value="birthday">Birthday</option>
+                  <option value="funeral">Funeral/Memorial</option>
+                  <option value="corporate">Corporate Event</option>
+                  <option value="other">Other</option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+                >
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </div>
+            </div>
+
+            <div id="weddingDateContainer" class="hidden">
+              <label for="weddingDate" class="block text-gray-700 mb-2"
+                >Wedding Date *</label
+              >
+              <input
+                type="date"
+                id="weddingDate"
+                name="weddingDate"
+                class="w-full px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm"
+              />
+            </div>
+
+            <div>
+              <label for="deliveryDate" class="block text-gray-700 mb-2"
+                >Delivery Date *</label
+              >
+              <input
+                type="date"
+                id="deliveryDate"
+                name="deliveryDate"
+                required
+                class="w-full px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="budget" class="block text-gray-700 mb-2"
+                >Budget Range: <span id="budgetValue">$100</span></label
+              >
+              <input
+                type="range"
+                id="budget"
+                name="budget"
+                min="50"
+                max="500"
+                step="10"
+                value="100"
+                class="w-full"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="message" class="block text-gray-700 mb-2"
+                >Special Requests</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="w-full px-4 py-2 border-2 border-gray-200 rounded focus:outline-none focus:border-primary text-sm"
+                placeholder="Tell us about your specific requirements, color preferences, or any other details..."
+              ></textarea>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-gray-700 mb-2"
+                >Upload Inspiration Images (optional)</label
+              >
+              <div
+                class="border-2 border-dashed border-gray-200 rounded p-4 text-center"
+              >
+                <input
+                  type="file"
+                  id="inspirationImages"
+                  name="inspirationImages"
+                  multiple
+                  accept="image/*"
+                  class="hidden"
+                />
+                <label for="inspirationImages" class="cursor-pointer">
+                  <div
+                    class="w-12 h-12 mx-auto mb-2 flex items-center justify-center rounded-full bg-primary bg-opacity-10"
+                  >
+                    <i class="ri-upload-2-line ri-xl text-primary"></i>
+                  </div>
+                  <p class="text-sm text-gray-500">
+                    Click to upload or drag and drop
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">PNG, JPG up to 5MB</p>
+                </label>
+              </div>
+            </div>
+
+            <div class="md:col-span-2 flex items-center">
+              <input
+                type="checkbox"
+                id="sameDay"
+                name="sameDay"
+                class="custom-checkbox mr-2"
+              />
+              <label for="sameDay" class="text-gray-700"
+                >I'm interested in same-day delivery (additional fee
+                applies)</label
+              >
+            </div>
+
+            <div class="md:col-span-2 mt-6">
+              <button
+                type="submit"
+                class="bg-primary text-white px-8 py-3 !rounded-button font-semibold hover:bg-opacity-90 transition whitespace-nowrap"
+              >
+                Get Quote
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/2">
+            <img
+              src="assets/about/abouot-us.jpg"
+              alt="About K&A Flowers"
+              class="rounded-lg shadow-lg w-full"
+            />
+          </div>
+          <div class="lg:w-1/2">
+            <h3 class="text-2xl font-bold mb-4">Our Story</h3>
+            <p class="mb-4">
+              Founded in 2015 by Katherine Anderson, K&A Flowers began as a
+              small passion project in a tiny studio in downtown. What started
+              as a creative outlet quickly blossomed into one of the city's most
+              sought-after floral design studios.
+            </p>
+            <p class="mb-6">
+              With over a decade of experience in floral design and a background
+              in fine arts, Katherine brings a unique artistic vision to every
+              arrangement. Our team of dedicated floral artists shares this
+              passion, creating bespoke designs that tell your story through the
+              language of flowers.
+            </p>
+
+            <h4 class="text-xl font-semibold mb-3">What Sets Us Apart</h4>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0 mt-1"
+                >
+                  <i class="ri-plant-line text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold">Fresh Daily Flowers</h5>
+                  <p class="text-gray-600">
+                    We source our blooms directly from local growers and
+                    international markets each morning to ensure peak freshness
+                    and longevity.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0 mt-1"
+                >
+                  <i class="ri-scissors-line text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold">Hand-Tied Arrangements</h5>
+                  <p class="text-gray-600">
+                    Every bouquet is thoughtfully designed and meticulously
+                    hand-crafted by our skilled florists, never mass-produced.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0 mt-1"
+                >
+                  <i class="ri-truck-line text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold">Same-Day Delivery</h5>
+                  <p class="text-gray-600">
+                    We offer prompt delivery throughout the metropolitan area,
+                    ensuring your flowers arrive in perfect condition when you
+                    need them.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practical Info -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2">Contact & Delivery</h2>
+          <p class="script-font text-2xl text-primary">How to reach us</p>
+          <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-bold mb-4">Delivery Area</h3>
+            <div class="rounded-lg overflow-hidden shadow-lg h-80 relative">
+              <div
+                class="absolute inset-0"
+                style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"
+              ></div>
+              <div class="absolute inset-0 bg-primary bg-opacity-20"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                  <h4 class="font-semibold mb-2">K&A Flowers</h4>
+                  <p class="text-sm">123 Blossom Street, Flowertown</p>
+                  <p class="text-sm mt-2">Delivery within 15 miles</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <h4 class="text-xl font-semibold mb-3">Delivery Information</h4>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary flex-shrink-0 mt-0.5"
+                  >
+                    <i class="ri-time-line"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium">Standard Delivery:</p>
+                    <p class="text-gray-600">
+                      Orders placed by 1 PM for same-day delivery
+                    </p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary flex-shrink-0 mt-0.5"
+                  >
+                    <i class="ri-map-pin-line"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium">Delivery Radius:</p>
+                    <p class="text-gray-600">
+                      15 miles from our shop in downtown
+                    </p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary flex-shrink-0 mt-0.5"
+                  >
+                    <i class="ri-money-dollar-circle-line"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium">Delivery Fee:</p>
+                    <p class="text-gray-600">$10-15 depending on location</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
+
+            <div class="bg-gray-50 rounded-lg p-6 shadow-md">
+              <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0"
+                  >
+                    <i class="ri-map-pin-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold">Our Location</h5>
+                    <p class="text-gray-600">123 Blossom Street</p>
+                    <p class="text-gray-600">Flowertown, FT 12345</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0"
+                  >
+                    <i class="ri-time-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold">Business Hours</h5>
+                    <p class="text-gray-600">Monday - Friday: 9 AM - 6 PM</p>
+                    <p class="text-gray-600">Saturday: 10 AM - 4 PM</p>
+                    <p class="text-gray-600">Sunday: Closed</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0"
+                  >
+                    <i class="ri-phone-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold">Phone</h5>
+                    <p class="text-gray-600">(555) 123-4567</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 flex-shrink-0"
+                  >
+                    <i class="ri-mail-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold">Email</h5>
+                    <p class="text-gray-600">hello@kaflowers.com</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <h5 class="font-semibold mb-3">Follow Us</h5>
+                <div class="flex gap-4">
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 text-primary hover:bg-primary hover:text-white transition"
+                  >
+                    <i class="ri-facebook-fill"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 text-primary hover:bg-primary hover:text-white transition"
+                  >
+                    <i class="ri-instagram-line"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 text-primary hover:bg-primary hover:text-white transition"
+                  >
+                    <i class="ri-pinterest-line"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary bg-opacity-10 text-primary hover:bg-primary hover:text-white transition"
+                  >
+                    <i class="ri-twitter-x-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-['Pacifico'] text-3xl text-primary mb-4">
+              K&A Flowers
+            </h3>
+            <p class="text-gray-400 mb-4">
+              Creating beautiful floral memories since 2015. Our passion is
+              bringing nature's beauty to your special moments.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-gray-400 hover:text-primary transition">
+                <i class="ri-facebook-fill ri-lg"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition">
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition">
+                <i class="ri-pinterest-line ri-lg"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition">
+                <i class="ri-twitter-x-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#collections"
+                  class="text-gray-400 hover:text-primary transition"
+                  >Collections</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#order"
+                  class="text-gray-400 hover:text-primary transition"
+                  >Custom Orders</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#gallery"
+                  class="text-gray-400 hover:text-primary transition"
+                  >Gallery</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-400 hover:text-primary transition"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-primary transition"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Newsletter</h4>
+            <p class="text-gray-400 mb-4">
+              Subscribe to receive updates, access to exclusive deals, and more.
+            </p>
+            <form class="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="px-4 py-2 w-full border-none rounded-l text-gray-800 text-sm focus:outline-none"
+              />
+              <button
+                type="submit"
+                class="bg-primary text-white px-4 py-2 rounded-r font-medium hover:bg-opacity-90 transition whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+            <div class="mt-4 flex items-center gap-2">
+              <span class="text-gray-400">We accept:</span>
+              <div class="flex gap-2">
+                <i class="ri-visa-fill ri-lg"></i>
+                <i class="ri-mastercard-fill ri-lg"></i>
+                <i class="ri-paypal-fill ri-lg"></i>
+                <i class="ri-apple-fill ri-lg"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500"
+        >
+          <p>&copy; 2025 K&A Flowers. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a
+      href="https://wa.me/5551234567"
+      class="whatsapp-button w-14 h-14 flex items-center justify-center bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition"
+    >
+      <i class="ri-whatsapp-line ri-xl"></i>
+    </a>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Budget range slider
+        const budgetSlider = document.getElementById("budget");
+        const budgetValue = document.getElementById("budgetValue");
+
+        budgetSlider.addEventListener("input", function () {
+          budgetValue.textContent = `$${this.value}`;
+        });
+
+        // Conditional fields for wedding date
+        const eventType = document.getElementById("eventType");
+        const weddingDateContainer = document.getElementById("weddingDateContainer");
+
+        eventType.addEventListener("change", function () {
+          if (this.value === "wedding") {
+            weddingDateContainer.classList.remove("hidden");
+            document
+              .getElementById("weddingDate")
+              .setAttribute("required", "required");
+          } else {
+            weddingDateContainer.classList.add("hidden");
+            document.getElementById("weddingDate").removeAttribute("required");
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Gallery filtering
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+            // Add active class to clicked button
+            this.classList.add("active");
+
+            const filter = this.getAttribute("data-filter");
+
+            galleryItems.forEach((item) => {
+              if (filter === "all" || item.getAttribute("data-category") === filter) {
+                item.style.display = "block";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Lightbox functionality
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        const lightbox = document.querySelector(".lightbox");
+        const lightboxContent = document.querySelector(".lightbox-content");
+        const lightboxClose = document.querySelector(".lightbox-close");
+
+        galleryItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const imgSrc = this.querySelector("img").src;
+            lightboxContent.src = imgSrc;
+            lightbox.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+        });
+
+        lightboxClose.addEventListener("click", function () {
+          lightbox.classList.remove("active");
+          document.body.style.overflow = "auto";
+        });
+
+        lightbox.addEventListener("click", function (e) {
+          if (e.target === lightbox) {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "auto";
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Form validation
+        const orderForm = document.getElementById("orderForm");
+
+        orderForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Basic validation
+          let isValid = true;
+          const requiredFields = orderForm.querySelectorAll("[required]");
+
+          requiredFields.forEach((field) => {
+            if (!field.value.trim()) {
+              isValid = false;
+              field.classList.add("border-red-500");
+            } else {
+              field.classList.remove("border-red-500");
+            }
+          });
+
+          if (isValid) {
+            // Show success message (in production, this would submit to Netlify)
+            alert(
+              "Thank you for your order request! We will contact you shortly with a quote.",
+            );
+            orderForm.reset();
+          } else {
+            alert("Please fill in all required fields.");
+          }
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuButton = document.querySelector(".ri-menu-line");
+        const mobileMenu = document.createElement("div");
+        mobileMenu.className =
+          "fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50";
+        
+        // Create menu content
+        mobileMenu.innerHTML = `
+          <div class="p-4">
+            <button class="ri-close-line text-2xl mb-4"></button>
+            <ul class="space-y-4">
+              <li><a href="#home" class="block text-gray-800 hover:text-primary">Home</a></li>
+              <li><a href="#collections" class="block text-gray-800 hover:text-primary">Collections</a></li>
+              <li><a href="#gallery" class="block text-gray-800 hover:text-primary">Gallery</a></li>
+              <li><a href="#order" class="block text-gray-800 hover:text-primary">Order</a></li>
+              <li><a href="#about" class="block text-gray-800 hover:text-primary">About</a></li>
+              <li><a href="#contact" class="block text-gray-800 hover:text-primary">Contact</a></li>
+            </ul>
+          </div>
+        `;
+
+        document.body.appendChild(mobileMenu);
+
+        // Toggle menu
+        menuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("-translate-x-full");
+        });
+
+        // Close menu when clicking close button
+        const closeButton = mobileMenu.querySelector(".ri-close-line");
+        closeButton.addEventListener("click", () => {
+          mobileMenu.classList.add("-translate-x-full");
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
+            mobileMenu.classList.add("-translate-x-full");
+          }
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            const navHeight = document.querySelector("nav").offsetHeight;
+            const targetPosition =
+              targetElement.getBoundingClientRect().top +
+              window.pageYOffset -
+              navHeight;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
